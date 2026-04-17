@@ -33,8 +33,28 @@ body {
     margin-top: 8px;
 }
 
-#disk_count {
-    height: 24px;
-    font-size: 20px;
-    text-align: center;
+.num-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.num-buttons button {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid #333;
+    background-color: #fff;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.num-buttons button.selected {
+  border-color: red;
+  background-color: #fff0f0;
 }

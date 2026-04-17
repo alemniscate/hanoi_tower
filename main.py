@@ -45,9 +45,6 @@ def set_timeout(f, ms):
 #
 
 def start_game():
-    global DISK_COUNT
-
-    DISK_COUNT = int(q("#disk_count").value)
 
     game["towers"] = [list(range(DISK_COUNT - 1, -1, -1)), [], []]
     game["selected_tower"] = -1
@@ -189,5 +186,21 @@ def handle_tower(index):
     
 def disk_count_change(event):
     start_game()
+    
+def num_button_on_click(event):
+    global DISK_COUNT
+    
+    for i in range(3, 9):
+        btn = q(f"#num{i}")
+        btn.classList.remove('selected')
+    event.target.classList.add('selected')
 
-q("#disk_count").addEventListener("change", disk_count_change)
+    num = int(event.target.textContent)
+    DISK_COUNT = num
+    start_game()
+
+for i in range(3, 9):
+    btn = q(f"#num{i}")
+    btn.addEventListener("click", num_button_on_click)
+q("#num3").classList.add("selected")    
+#DISK_COUNT = 3
