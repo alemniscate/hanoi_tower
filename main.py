@@ -1,7 +1,7 @@
 import random
 import js
 
-DISK_COUNT = 4
+DISK_COUNT = 3
 TOWER_COUNT = 3
 
 game = {
@@ -10,11 +10,22 @@ game = {
     "move_count": 0
 }
 
+#DISK_COLORS = [
+#    "#FFFF44",
+#    "#4444FF",
+#    "#44FF44",
+#    "#FF4444"
+#]
+
 DISK_COLORS = [
-    "#FFFF44",
-    "#4444FF",
-    "#44FF44",
-    "#FF4444"
+    "#E41A1C",
+    "#377EB8",
+    "#4DAF4A",
+    "#FFD92F",
+    "#984EA3",
+    "#FF7F00",
+    "#000000",
+    "#FFFFFF",
 ]
 
 #
@@ -34,11 +45,14 @@ def set_timeout(f, ms):
 #
 
 def start_game():
+    global DISK_COUNT
+
+    DISK_COUNT = int(q("#disk_count").value)
 
     game["towers"] = [list(range(DISK_COUNT - 1, -1, -1)), [], []]
     game["selected_tower"] = -1
     game["move_count"] = 0
-    
+        
     draw_game()
     
 def move_disk(from_tower, to_tower):
@@ -172,3 +186,8 @@ def handle_tower(index):
             q_text("#info", f"塔{index + 1}に移動できません")
         game["selected_tower"] = -1
     draw_game() 
+    
+def disk_count_change(event):
+    start_game()
+
+q("#disk_count").addEventListener("change", disk_count_change)
